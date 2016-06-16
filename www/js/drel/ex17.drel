@@ -1,0 +1,11 @@
+     With b as geom_bond
+ 
+     xc = List()
+ 
+     For [label,symop] in  b.id   {
+ 
+         xf   =   SymEquiv(symop, _atom_site[label].fract_xyz)
+ 
+         xc ++=  _atom_sites_Cartn_transform.matrix * xf
+      }
+      _geom_bond.distance =  Norm ( xc[0] - xc[1] )

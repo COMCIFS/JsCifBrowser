@@ -1,0 +1,67 @@
+# Store unique sites as a local list   
+
+     atomlist  = List()
+     Loop  a  as  atom_site  {
+        axyz       <-   a.fract_xyz
+        cxyz       <-  _atom_sites_Cartn_transform.matrix * axyz
+        radb       <-  _atom_type[a.type_symbol].radius_bond
+        radc       <-  _atom_type[a.type_symbol].radius_contact
+        ls         <-  Tuple ( [a.label, "1_555"] )
+        atomlist ++<-  [ls, axyz, cxyz, radb, radc, 0]
+     }
+
+# Store closest connected sites as a list
+
+     molelist  = List()
+     dmin     <- _geom.bond_distance_min
+     m        <- 0
+     n        <- 0
+
+     For [ls1,a1,c1,rb1,rc1,m1] in atomlist  {
+         If (m1 != 0) Next 
+         m         +<- 1 
+         n         +<- 1 
+         molelist ++<- [ls1,a1,c1,rb1,rc1,n,m]
+         atomlist --<- [ls1,a1,c1,rb1,rc1,m]
+  
+         Repeat  {
+             connect <- "no"
+
+             For [ls2,a2,c2,rb2,rc2,n2,m2] in molelist  {
+                 If (m2 != m) Next 
+   
+                 For [ls3,a3,c3,rb3,rc3,m3] in atomlist  {
+                     dmax  <- rb2 + rb3 + _geom.bond_distance_incr
+   
+                     Loop  s  as  symmetry_equiv  :ns   {
+
+                         axyz      <-  s.R * a3 + s.T
+                         bxyz,tran <-  Closest (axyz, a2)    
+                         cxyz      <- _atom_sites_Cartn_transform.matrix *bxyz
+                         d         <-  Norm (cxyz - c2)     
+      
+                        If (d > dmin and d < dmax)          {
+                            ls  <-  Tuple ([ls3[0], Symop(ns+1, tran)])    
+      
+                            If (ls not in Strip(molelist,0))    {   
+                                n         +<- 1
+                                molelist ++<- [ls,bxyz,cxyz,rb3,rc3,n,m] 
+                                atomlist --<- [ls3,a3,c3,rb3,rc3,m]  
+                                connect    <- "yes"
+         }   }   }   }   }
+        If (connect == "no") Break
+     }  } 
+
+# Store connected molecular sites as MODEL_SITE list
+
+     For [ls,ax,cx,rb,rc,n,m] in molelist  {
+
+        model_site( .id              <- ls,
+                    .fract_xyz       <- ax,
+                    .Cartn_xyz       <- cx,
+                    .radius_bond     <- rb,
+                    .radius_contact  <- rc,
+                    .index           <- n,
+                    .mole_index      <- m  )  
+      }
+

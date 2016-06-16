@@ -1,0 +1,8 @@
+
+         If(_diffrn_radiation.probe == "neutron") { _units.code = "femtometres"
+  } Else If(_diffrn_radiation.probe == "electron"){
+        _units.code =  "volts"
+  } Else                                           {
+       _units.code =  "electrons"
+  }
+

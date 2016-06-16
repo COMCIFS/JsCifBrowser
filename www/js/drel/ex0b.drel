@@ -1,0 +1,10 @@
+     With l  as  cell_length
+     With a  as  cell_angle
+     With r  as  cell_reciprocal_angle
+
+    _cell.orthogonal_matrix <-   Matrix([
+
+          [  l.a*Sind(a.beta)*Sind(r.gamma),                 0,   0 ],
+          [ -l.a*Sind(a.beta)*Cosd(r.gamma), l.b*Sind(a.alpha),   0 ],
+          [  l.a*Cosd(a.beta),               l.b*Cosd(a.alpha), l.c ]])
+

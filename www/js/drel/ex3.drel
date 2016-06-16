@@ -1,0 +1,6 @@
+     With a as atom_site_aniso
+ 
+      a.matrix_B <- Matrix([[ a.B_11, a.B_12, a.B_13 ],
+                            [ a.B_12, a.B_22, a.B_23 ],
+                            [ a.B_13, a.B_23, a.B_33 ]]) 
+

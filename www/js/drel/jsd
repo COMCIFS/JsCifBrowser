@@ -1,0 +1,11 @@
+#cd /usr/local/lib/node_modules/jsdoc
+
+java -classpath /usr/local/lib/node_modules/jsdoc/rhino/js.jar \
+   org.mozilla.javascript.tools.debugger.Main -debug -opt -1 \
+  -modules file:////usr/local/lib/node_modules/jsdoc/node_modules \
+  -modules file:////usr/local/lib/node_modules/jsdoc/rhino \
+  -modules file:////usr/local/lib/node_modules/jsdoc/lib \
+  -modules file:////usr/local/lib/node_modules/jsdoc \
+   /usr/local/lib/node_modules/jsdoc/jsdoc.js \
+   $1 \
+  --dirname=/usr/local/lib/node_modules/jsdoc/

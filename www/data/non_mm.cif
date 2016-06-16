@@ -1,0 +1,26 @@
+#
+#  This example is a cif_core CIF. When read into a cif_mm environment
+#  the _atom_type_scat separates in a bizarre way.
+#
+data_core_test
+
+loop_
+_atom_type.symbol
+_atom_type.oxidation_number
+_atom_type.atomic_mass
+# _atom_type.number_in_cell
+  O    0   15.999 # 12 
+  C    0   12.011 # 28
+  H    0   1.008  # 24
+
+
+loop_
+_atom_type_scat.symbol
+_atom_type_scat.dispersion_real
+_atom_type_scat.dispersion_imag
+_atom_type_scat.source
+  O     .047  .032  'Int Tables Vol IV Tables 2.2B and 2.3.1'
+  C     .017  .009  'Int Tables Vol IV Tables 2.2B and 2.3.1'
+  H      0  0  'Int Tables Vol IV Tables 2.2B and 2.3.1'
+
+

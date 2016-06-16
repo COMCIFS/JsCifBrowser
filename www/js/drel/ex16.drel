@@ -1,0 +1,7 @@
+    [label,symop] <-  _model_site.id
+
+     a = atom_site[label]
+     s = symmetry_equiv[SymKey(symop)]
+
+     _model_site.adp_matrix_beta <- s.R * a.matrix_beta * s.RT
+

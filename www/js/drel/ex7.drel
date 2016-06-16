@@ -1,0 +1,31 @@
+     dmin <- _geom.bond_distance_min
+
+     Loop  m1  as  model_site  :i  {   # loop vertex model site
+
+        rad1  <-  m1.radius_bond + _geom.bond_distance_incr
+
+        Loop  m2  as  model_site  :j  {  # loop first target site
+
+           If (i==j or m1.mole_index != m2.mole_index) Next
+           v1 <- m2.Cartn_xyz - m1.Cartn_xyz
+           d1 <- Norm (v1)
+
+           If (d1<dmin or d1>(rad1+m2.radius_bond))  Next
+
+           rad2  <-  m2.radius_bond + _geom.bond_distance_incr
+
+           Loop  m3  as  model_site  :k>j  {  # loop second target site
+
+              If (i==k or m1.mole_index != m3.mole_index) Next
+              v2 <- m3.Cartn_xyz - m1.Cartn_xyz
+              d2 <- Norm (v2)
+
+
+              If (d2<dmin or d2>(rad2+m3.radius_bond)) Next
+
+              angle <- Acosd ( v1*v2 / (d1*d2) )
+
+              geom_angle( .id        <- Tuple ([m2.id, m1.id, m3.id]),
+                          .distances <- Tuple ([d1, d2]),
+                          .value     <- angle )
+     }   }   } 

@@ -1,0 +1,17 @@
+     dmin <- _geom.bond_distance_min
+
+     Loop  m1  as  model_site  :i  {
+
+        rad   <-  m1.radius_bond + _geom.bond_distance_incr
+
+        Loop  m2  as  model_site  :j  {
+
+           If (i==j or m1.mole_index != m2.mole_index) Next
+
+           d <- Norm (m1.Cartn_xyz - m2.Cartn_xyz)
+
+           If (d<dmin or d>(rad+m2.radius_bond)) Next
+
+           geom_bond( .id        <- Tuple ([m1.id, m2.id]),
+                      .distance  <- d  )
+      }   }  

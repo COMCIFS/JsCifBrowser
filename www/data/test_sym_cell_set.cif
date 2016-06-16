@@ -1,0 +1,262 @@
+data_missing_1
+
+_cell_length.a                         8.0
+_cell_length.b                         9.0
+_cell_length.c                         10.0
+_cell_angle.alpha                      92.00000
+_cell_angle.beta                       90.8331(5)
+# _cell_angle.gamma                      93.00000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 triclinic
+
+
+data_missing_2
+
+_cell_length.a                         8.0
+_cell_length.b                         9.0
+_cell_length.c                         10.0
+_cell_angle.alpha                      92.00000
+_cell_angle.beta                       90.8331(5)
+_cell_angle.gamma                      ?
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 triclinic
+
+
+data_triclinic_1
+
+_cell_length.a                         8.0
+_cell_length.b                         8.0
+_cell_length.c                         10.0
+_cell_angle.alpha                      90.00000
+_cell_angle.beta                       90.8331(5)
+_cell_angle.gamma                      90.00000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 triclinic
+
+
+
+data_triclinic_2
+
+_cell_length.a                         8.0
+_cell_length.b                         9.0
+_cell_length.c                         10.0
+_cell_angle.alpha                      90.00000
+_cell_angle.beta                       90.8331(5)
+_cell_angle.gamma                      90.00000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 triclinic
+
+
+
+
+data_monoclinic_1
+
+_cell_length.a                         8.0
+_cell_length.b                         8.0
+_cell_length.c                         10.0
+_cell_angle.alpha                      90.00000
+_cell_angle.beta                       90.8331(5)
+_cell_angle.gamma                      90.00000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 monoclinic
+
+
+data_monoclinic_2
+
+_cell_length.a                         8.0
+_cell_length.b                         9.0
+_cell_length.c                         10.0
+_cell_angle.alpha                      90.00000
+_cell_angle.beta                       90.000
+_cell_angle.gamma                      90.00000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 monoclinic
+
+
+
+data_monoclinic_3
+
+_cell_length.a                         8.0
+_cell_length.b                         9.0
+_cell_length.c                         10.0
+_cell_angle.alpha                      90.00000
+_cell_angle.beta                       90.8331(5)
+_cell_angle.gamma                      91.00000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 monoclinic
+
+
+
+data_orthorhombic_1
+
+_cell_length.a                         8.0
+_cell_length.b                         8.0
+_cell_length.c                         10.0
+_cell_angle.alpha                      90.00000
+_cell_angle.beta                       90.8331(5)
+_cell_angle.gamma                      91.00000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 orthorhombic
+
+
+data_orthorhombic_2
+
+_cell_length.a                         8.0
+_cell_length.b                         9.0
+_cell_length.c                         10.0
+_cell_angle.alpha                      90.00000
+_cell_angle.beta                       90.8331(5)
+_cell_angle.gamma                      91.00000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 orthorhombic
+
+
+
+data_tetragonal_1
+
+_cell_length.a                         8.0
+_cell_length.b                         8.0
+_cell_length.c                         8.0
+_cell_angle.alpha                      90.00000
+_cell_angle.beta                       90.8331(5)
+_cell_angle.gamma                      91.00000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 tetragonal
+
+
+data_tetragonal_2
+
+_cell_length.a                         8.0
+_cell_length.b                         9.0
+_cell_length.c                         7.0
+_cell_angle.alpha                      90.00000
+_cell_angle.beta                       90.8331(5)
+_cell_angle.gamma                      91.00000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 tetragonal
+
+
+data_tetragonal_3
+
+_cell_length.a                         8.0
+_cell_length.b                         9.0
+_cell_length.c                         7.0
+_cell_angle.alpha                      90.00000
+_cell_angle.beta                       90.8331(5)
+_cell_angle.gamma                      91.00000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 tetragonal
+
+
+
+data_trigonal_1
+
+_cell_length.a                         8.0
+_cell_length.b                         8.0
+_cell_length.c                         8.0
+_cell_angle.alpha                      90.000
+_cell_angle.beta                       90.000
+_cell_angle.gamma                      120.000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 trigonal
+
+
+data_trigonal_2
+
+_cell_length.a                         7.0
+_cell_length.b                         8.0
+_cell_length.c                         8.0
+_cell_angle.alpha                      90.000
+_cell_angle.beta                       90.000
+_cell_angle.gamma                      120.000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 trigonal
+
+
+
+data_trigonal_3
+
+_cell_length.a                         8.0
+_cell_length.b                         8.0
+_cell_length.c                         7.0
+_cell_angle.alpha                      90.00000
+_cell_angle.beta                       90.00000
+_cell_angle.gamma                      90.00000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 trigonal
+
+
+
+
+data_trigonal_4
+
+_cell_length.a                         8.0
+_cell_length.b                         8.0
+_cell_length.c                         7.0
+_cell_angle.alpha                      90.00000
+_cell_angle.beta                       90.00000
+_cell_angle.gamma                      120.00000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 trigonal
+
+
+data_rhombohedral_1
+
+_cell_length.a                         8.0
+_cell_length.b                         8.0
+_cell_length.c                         7.0
+_cell_angle.alpha                      90.00000
+_cell_angle.beta                       90.00000
+_cell_angle.gamma                      90.00000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 rhombohedral
+
+
+data_rhombohedral_2
+
+_cell_length.a                         8.0
+_cell_length.b                         8.0
+_cell_length.c                         8.0
+_cell_angle.alpha                      90.00000
+_cell_angle.beta                       90.00000
+_cell_angle.gamma                      90.00000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 rhombohedral
+
+
+
+data_rhombohedral_3
+
+_cell_length.a                         8.0
+_cell_length.b                         8.0
+_cell_length.c                         8.0
+_cell_angle.alpha                      92.00000
+_cell_angle.beta                       92.00000
+_cell_angle.gamma                      90.00000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 rhombohedral
+
+
+
+data_cubic_1
+
+_cell_length.a                         8.0
+_cell_length.b                         8.0
+_cell_length.c                         9.0
+_cell_angle.alpha                      90.00000
+_cell_angle.beta                       90.00000
+_cell_angle.gamma                      90.00000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 cubic
+
+
+data_cubic_2
+
+_cell_length.a                         8.0
+_cell_length.b                         8.0
+_cell_length.c                         8.0
+_cell_angle.alpha                      90.00000
+_cell_angle.beta                       90.00000
+_cell_angle.gamma                      91.00000
+_cell.volume                           ? # 635.3
+_symmetry.cell_setting                 cubic

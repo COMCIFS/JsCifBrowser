@@ -1,0 +1,2 @@
+
+    _cell_vector.a <- _cell.orthogonal_matrix * Vector (1,0,0)

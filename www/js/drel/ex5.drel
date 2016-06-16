@@ -1,0 +1,12 @@
+    With t as atom_type
+
+    cnt <- 0.
+
+    Loop a  as  atom_site  {
+
+       if ( a.type_symbol == t.symbol ) {
+
+          cnt +<- a.occupancy * a.site_symmetry_multiplicity
+    }  }
+    _atom_type.number_in_cell <- cnt
+

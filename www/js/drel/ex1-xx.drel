@@ -1,0 +1,14 @@
+     With  a  as  atom_site  
+
+        mul  <-  1
+        xyz  <-  a.fract_xyz.useValue();
+
+          Loop  s  as  symmetry_equiv  {
+
+             sxyz  <-  s.R * xyz + s.T
+             diff  <-  Mod( 99.5 + xyz - sxyz, 1.0) - 0.5
+
+             If ( Norm ( diff ) > 0.1 ) mul +<- 1
+       } 
+        _atom_site.symmetry_multiplicity <- mul
+

@@ -1,0 +1,152 @@
+
+input[type=button], input[type=submit], input[type=file], select {
+    padding:    6px; 
+} 
+
+/*
+ */
+
+.cif {
+  clear: both;
+  border: 3px double #ccc;
+  border-right: 0;
+  padding: 0.05em; 
+}
+
+dl { /*border: 3px double #ccc; */
+  clear: both;
+     padding: 1px 1px 1px 1px;
+     margin: 0px 0px 0px 0px;
+} 
+dt { /*float: left; */
+  margin: 2px 0 0 1px;
+  padding: 1px 1px 1px 1px;
+  text-align: left;
+  font-weight: bold;
+  color: green;
+  font-family: Arial, sans-serif;
+} 
+
+dd { 
+  margin: 0px 0px 0px 20px;
+  padding: 0 0 1px 0;
+}
+
+.cif_filename a {
+  color: black;
+  font-weight: bold;
+}
+.comment_header {
+  color: black;
+  font-weight: bold;
+}
+.comment:before { 
+   content: "#\a0"; /* escaped unicode */
+} 
+.comment {
+  color: orange;
+  white-space: nowrap;
+  font-weight: bold;
+}
+.data_block {
+  clear: both;
+  border: 3px double #ccc;
+  margin: 0 0 0 0;
+  border-right: 0;
+  padding: 0.05em; 
+}
+
+.category, .datum_defn, .category_defn, .loop_ {
+  border: 3px double #ccc;
+  padding: 0.05em; 
+  border-right: 0;
+/*
+  margin: 0 0 0 0;
+ */
+}
+.datum {
+  position:relative;
+  display:inline-block;
+  float: left;
+  margin: 0 0 0 0;
+  white-space:nowrap;
+/*  margin: 0 auto;
+  line-height: 16px;
+ */
+}
+
+.datum_name, .category_name {
+  font-family:  Georgia, "Times New Roman", Times, serif;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 0%;
+/*  float: left;  */
+  min-width:13em;
+  color: blue;
+/*  border: 1px double; */
+}
+
+.unknown_datum_name a.ui-link {
+/*  border: 1px double; */
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  margin-left: 0%;
+/*  float: left; */
+  min-width:13em;
+  color: magenta;
+}
+
+
+.datum_value  {
+  margin: 0 0 0 10px;
+  float: left;
+  font-family:  Georgia, "Times New Roman", Times, serif;
+  font-size: 14px;
+}
+
+textarea { 
+  margin: 0 0 0 0;
+   border: 2px inset #ccc ;
+   border-radius: 5px;
+   font-family:  WorkAroundWebKitAndMozilla, monospace;
+   font-size: 0.8em;
+}
+
+textarea.changed { 
+/*
+  background-color: #ffaaff; 
+ */
+}
+
+span.cif_control a.ui-link {
+  color: red ;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+
+
+    /*
+.cif_control  {
+  -moz-transition-delay: 2s;
+  -webkit-transition-delay: 2s;
+  -o-transition-delay: 2s;
+}
+
+.cif_control:hover  {
+      CSS3 transition shorthand order:
+      transition: [transition-property] [transition-duration] [transition-timing-function] [transition-delay];
+      if you don't specify values for transition-property, default is "all"
+      if you don't specify values for transition-timing-function, default is linear
+
+  -moz-transition-duration: 0s;
+  -webkit-transition-duration: 0s;
+  -o-transition-duration: 0s;
+    -webkit-transition: .01s 1s;
+    -moz-transition: .01s 1s;
+    -o-transition: .01s 1s;
+    transition: .01s 1s;
+
+}
+ */
+

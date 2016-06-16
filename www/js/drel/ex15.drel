@@ -1,0 +1,26 @@
+   With r  as  refln
+
+      fc  <-  Complex (0., 0.)
+      h   <-  r.hkl
+      bb  <-  r.sin_theta_over_lambda **2
+      uu  <-  8*Pi**2 * bb
+ 
+   Loop a  as  atom_site  {
+
+          x  <-  a.fract_xyz
+
+          f  <-  ( r.form_factor_table [a.type_symbol] * 
+                                      a.symmetry_multiplicity * a.occupancy )
+
+          If      (a.adp_type == 'uiso') t <- Exp(-a.U_iso_or_equiv * uu)
+          Else If (a.adp_type == 'biso') t <- Exp(-a.B_iso_or_equiv * bb)
+          Else                           u <- a.matrix_beta
+
+      Loop s  as  symmetry_equiv  {
+
+              If (a.adp_type == 'uani') t <- Exp(-h * s.R * u * s.RT * h)
+              
+              fc +<-  f * t * ExpImag( TwoPi * ( h * ( s.R * x + s.T)))
+   }  }
+      _refln.F_complex  <-  fc / _symmetry.multiplicity
+

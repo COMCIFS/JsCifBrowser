@@ -1,0 +1,4 @@
+     With c  as  cell_vector
+ 
+    _cell_reciprocal_vector.a <- c.b ^ c.c / _cell.volume
+

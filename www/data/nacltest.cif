@@ -1,0 +1,83 @@
+data_nacltest
+ 
+ # Formula sums constructed from STARTX celcon lines and and ADDATM
+ # atom sites disagree! Which formula sum is more correct?
+ #                                     Cl1 Na1
+
+_chemical_formula_sum                  Na72
+_chemical_formula_moiety               ?
+_chemical_formula_weight               1655.28
+_chemical_melting_point                ?
+ 
+_symmetry_cell_setting                 cubic
+_symmetry_space_group_name_H-M         F_m_-3
+_symmetry_space_group_name_Hall        -f_2_2_3
+ 
+loop_
+_symmetry_equiv_pos_as_xyz
+  +x,+y,+z  -x,-y,+z  +x,-y,-z  -x,+y,-z  +y,+z,+x  -y,-z,+x  +y,-z,-x  -y,+z,-x
+  +z,+x,+y  -z,+x,-y  -z,-x,+y  +z,-x,-y  -x,-y,-z  +x,+y,-z  -x,+y,+z  +x,-y,+z
+  -y,-z,-x  +y,+z,-x  -y,+z,+x  +y,-z,+x  -z,-x,-y  +z,-x,+y  +z,+x,-y  -z,+x,+y
+  +x,1/2+y,1/2+z  1/2+x,+y,1/2+z  1/2+x,1/2+y,+z  -x,1/2-y,1/2+z  1/2-x,-y,1/2+z
+  1/2-x,1/2-y,+z  +x,1/2-y,1/2-z  1/2+x,-y,1/2-z  1/2+x,1/2-y,-z  -x,1/2+y,1/2-z
+  1/2-x,+y,1/2-z  1/2-x,1/2+y,-z  +y,1/2+z,1/2+x  1/2+y,+z,1/2+x  1/2+y,1/2+z,+x
+  -y,1/2-z,1/2+x  1/2-y,-z,1/2+x  1/2-y,1/2-z,+x  +y,1/2-z,1/2-x  1/2+y,-z,1/2-x
+  1/2+y,1/2-z,-x  -y,1/2+z,1/2-x  1/2-y,+z,1/2-x  1/2-y,1/2+z,-x  +z,1/2+x,1/2+y
+  1/2+z,+x,1/2+y  1/2+z,1/2+x,+y  -z,1/2+x,1/2-y  1/2-z,+x,1/2-y  1/2-z,1/2+x,-y
+  -z,1/2-x,1/2+y  1/2-z,-x,1/2+y  1/2-z,1/2-x,+y  +z,1/2-x,1/2-y  1/2+z,-x,1/2-y
+  1/2+z,1/2-x,-y  -x,1/2-y,1/2-z  1/2-x,-y,1/2-z  1/2-x,1/2-y,-z  +x,1/2+y,1/2-z
+  1/2+x,+y,1/2-z  1/2+x,1/2+y,-z  -x,1/2+y,1/2+z  1/2-x,+y,1/2+z  1/2-x,1/2+y,+z
+  +x,1/2-y,1/2+z  1/2+x,-y,1/2+z  1/2+x,1/2-y,+z  -y,1/2-z,1/2-x  1/2-y,-z,1/2-x
+  1/2-y,1/2-z,-x  +y,1/2+z,1/2-x  1/2+y,+z,1/2-x  1/2+y,1/2+z,-x  -y,1/2+z,1/2+x
+  1/2-y,+z,1/2+x  1/2-y,1/2+z,+x  +y,1/2-z,1/2+x  1/2+y,-z,1/2+x  1/2+y,1/2-z,+x
+  -z,1/2-x,1/2-y  1/2-z,-x,1/2-y  1/2-z,1/2-x,-y  +z,1/2-x,1/2+y  1/2+z,-x,1/2+y
+  1/2+z,1/2-x,+y  +z,1/2+x,1/2-y  1/2+z,+x,1/2-y  1/2+z,1/2+x,-y  -z,1/2+x,1/2+y
+  1/2-z,+x,1/2+y  1/2-z,1/2+x,+y
+ 
+_cell_length_a                         5.6280(6)
+_cell_length_b                         5.6280(6)
+_cell_length_c                         5.6280(6)
+_cell_angle_alpha                      90.00000
+_cell_angle_beta                       90.00000
+_cell_angle_gamma                      90.00000
+_cell_volume                           178.26(6)
+_cell_formula_units_Z                  4
+ 
+_exptl_crystal_density_diffrn          2.177
+_diffrn_radiation_type                'Mo K\a'
+_diffrn_radiation_wavelength           .71073
+ 
+_cell_measurement_temperature          293
+ 
+_exptl_absorpt_coefficient_mu          1.782
+#------------------------------------------------
+ 
+loop_
+_atom_type_symbol
+_atom_type_description
+_atom_type_oxidation_number
+_atom_type_number_in_cell
+_atom_type_scat_dispersion_real
+_atom_type_scat_dispersion_imag
+_atom_type_scat_source
+  Na  ?  0  4  .03  .025  'IT Vol C. Table 6.1.1.4  Table 6.1.1.5'
+  Cl  ?  0  4  .132  .159  'IT Vol C. Table 6.1.1.4  Table 6.1.1.5'
+ 
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_adp_type
+_atom_site_occupancy
+_atom_site.site_symmetry_multiplicity
+  Na96  .12300  .78900  .32100  .03500  Uiso  1.00000  ? 
+  Na48a  .00000  .34500  .41200  .03500  Uiso 1.00000  ?  
+  Na48b  .10000  .25000  .25000  .03500  Uiso  1.00000  ?  
+  Na32  .87000  .87000  .87000  .03500  Uiso  1.00000  ?  
+  Na24a  .31500  .00000  .00000  .03500  Uiso  1.00000  ?  
+  Na24b  .00000  .25000  .25000  .03500  Uiso  1.00000  ?  
+  Na8  .75000  .75000  .75000  .03500  Uiso  1.00000  ?  
+  Na4a  .50000  .50000  .50000  .03500  Uiso  1.00000  ?  
+  Na4b  .00000  .00000  .00000  .03500  Uiso  1.00000  ?  

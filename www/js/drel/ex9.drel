@@ -1,0 +1,41 @@
+     dmin <- _geom.bond_distance_min
+
+     Loop  m1  as  model_site  :i  {
+
+        rad1  <-  m1.radius_bond + _geom.bond_distance_incr
+
+        Loop  m2  as  model_site  :j  {
+
+           If (i==j or m2.mole_index!=m1.mole_index) Next
+           v21 <- m1.Cartn_xyz - m2.Cartn_xyz
+           d21 <- Norm (v21)
+
+           If (d21 < dmin or d21 > (rad1+m2.radius_bond)) Next
+           rad2  <-  m2.radius_bond + _geom.bond_distance_incr
+
+           Loop  m3  as  model_site  :k  {
+
+              If (k==i or k==j or m3.mole_index!=m2.mole_index) Next
+              v23 <- m3.Cartn_xyz - m2.Cartn_xyz
+              d23 <- Norm (v23)
+              If (d23 < dmin or d23 > (rad2+m3.radius_bond)) Next
+              rad3  <-  m3.radius_bond + _geom.bond_distance_incr
+
+              Loop  m4  as  model_site  :l  {
+
+                 If (l==k or l==j or l==i or m4.mole_index!=m3.mole_index) Next
+                 v34 <- m4.Cartn_xyz - m3.Cartn_xyz
+                 d34 <- Norm (v34)
+
+                 If (d34 < dmin or d34 > (rad3+m4.radius_bond)) Next
+
+                 u1    <-  v21 ^ v23
+                 u2    <-  v34 ^ v23
+
+                 angle <- Acosd ( u1 * u2 / ( Norm(u1) * Norm(u2) ) )
+                 If ( (u1^u2)*v23 > 0 ) angle = -angle
+
+                 geom_torsion( .id        <- Tuple ([m1.id,m2.id,m3.id,m4.id]),
+                               .distances <- Tuple ([d21,d23,d34]),
+                               .angle     <- angle )
+     }   }   }    } 

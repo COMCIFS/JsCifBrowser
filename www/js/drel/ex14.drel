@@ -1,0 +1,36 @@
+     Function SeitzFromJones( j :[Single, Uchar])  {  # Jones symmetry notation
+       
+      joneschrs <- "123456xyz/,+- " 
+      s         <- Matrix([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,1]]) 
+      axis      <- 0
+      sign      <- 1
+      inum      <- 0
+  
+      do i=0,Len(j)-1    {
+          c <- j[i]
+          If (c not in joneschrs) print 'illegal char in symmetry xyz'
+
+          If      (c == ' ') Next
+          If      (c == ',') {
+                             axis     +<- 1
+                             inum      <- 0
+                             sign      <- 1
+          }
+          Else If (c == '+') sign      <- +1
+          Else If (c == '-') sign      <- -1
+          Else If (c == 'x') s[axis,0] <- sign
+          Else If (c == 'y') s[axis,1] <- sign
+          Else If (c == 'z') s[axis,2] <- sign
+          Else   {           
+               If (inum == 0)   m  <- AtoI(c)
+               If (inum == 1 and c != '/') print 'illegal num in symmetry xyz'
+               If (inum == 2)   {
+                                n  <- AtoI(c)
+                     If(n == 5) print 'illegal translation in symmetry xyz'
+                     s[axis,3] <- Mod(10.+ Float(sign*m)/Float(n), 1.) 
+                     sign      <- 1
+               }
+               inum +<- 1
+       }  }         
+                          SeitzFromJones <- s
+    }

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE HTML>
+<HTML>
+  <HEAD>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <TITLE>About: HTML5 CIF Browser</TITLE>
+ </HEAD>
+ <BODY style="font-family:Arial, sans-serif; margin:0.2em;">
+<h2><a href="index.html">JsCif</a></h2>
+<p>
+<em>JsCif</em> is an <em>Apache Cordova</em> (nee <em>PhoneGap</em>) based <em>Android</em> app built around HTML5 and JavaScript and with a <em>jQuery Mobile</em> wrapper for viewing and applying 
+<a href="http://www.ncbi.nlm.nih.gov/pubmed/22725641">dictionary Relational Expression Language</a> (dREL) methods to <a href="http://www.iucr.org/resources/cif">Crystallographic 
+Information Files</a> (CIFs). 
+</p>
+
+
+<h3>Operation</h3>
+<p>
+<em><a href="index.html">JsCif</a></em> loads a pre-assembled DDLm CIF core dictionary (v1.4.05) at startup 
+which can be navigated and examined within the <b>Dict</b> panel.
+From within the <b>Controls</b> panel, the user can load a local CIF data file
+for validation or evaluation of unknowns against the loaded dictionary.
+</p>
+
+<p>
+Some of the dREL algorithms are numerically demanding, particularly if they
+involve looped data tables. Consequently a modicum of patience might be
+necessary on the part of the user...
+</p>
+
+
+<p>
+It is essential to load any alternative dictionary(s) before you 
+read in your CIF. Loading the CIF establishes all the cross linking 
+and categorisation of the various data attributes, vital for building 
+the hierarchy. When the CIF is loaded it is displayed simply as an
+abbreviated  list of data_block_names. Selecting the <b>[+]</b> links
+should permit individual blocks to be navigated as desired.   
+</p>
+
+<p>
+In addition, for each data_block_name, there is a <b>Gen</b>(-erate) 
+control that permits certain categories to be <em>calculated</em> via
+their <em>category evaluation</em> methods (e.g. model_site)
+Hover the mouse cursor over the <b>Gen</b> control for a second or so to
+activate the popup, then choose the desired category.
+Categories below the marker line in the popup list are missing and 
+have no <em>evaluation</em> method so will just be added as empty categories.  
+</p>
+
+<p>
+Similarly, for sub categories and sub-sub categories there are <b>Add</b>
+controls to add absent sub-categories or missing data_items to selective
+categories.
+</p>
+
+<p>
+If particular data items have an associated dictionary Evaluation method
+then you may like to simply click the <b>Eval</b> control and sit back in amazement
+as various <em>Alert</em> windows pop up to annoy you.
+Various <em>evaluation</em> methods are being harvested from the
+loaded dictionary, transformed to JavaScript, compiled and evaluated 
+as necessary.
+</p>
+
+
+<p>
+A few basic things you might like to try.
+</p>
+<ol>
+
+<li><p>
+  load every dictionary file from data/ddlm simultaneously
+     (shift click   shift click in Firefox file browser popup )  
+     load the nick.cif data file navigate the hierarchy and 
+     eval a few unknowns.
+  Note that you can just choose the top-level dictionary cif.dic,
+  and you will be prompted to load all of its dependencies as they
+  are being resolved. The latter approach is a little tedious, though
+  necessary to work within the Web Browser security model. 
+   </p>
+</li>
+
+<li><p>
+  Now that DDLm has aliases implemented, potentially you
+     could load DDLm and a CIF-1.0 file like xtest0.cif and 
+     evaluate some missing items. But the results will be a 
+     mixed DDL CIF :-/
+   </p>
+</li>
+
+<li><p>
+  Potentially you could try to load a DDL2 dictionary and 
+     corresponding CIF, but that might be quite boring.
+   </p>
+</li>
+
+<li><p>
+  Potentially you could try to load a DDL1 dictionary and 
+     a corresponding CIF, but that might also be quite boring.
+     (Recently tested and loading and linking now seems to work)
+   </p>
+</li>
+</ol>
+
+
+
+<h3>Software acknowledgments:</h3>
+
+<p>
+This implementation uses: 
+</p>
+
+<dl>
+  <dt><a href="http://www.phonegap.com/">Apache Cordova 3.3.1</a></dt> 
+    <dd> a framework for porting Apps across multiple mobile OSs</dd>
+  <dt><a href="http://www.jquerymobile.com/">jQuery Mobile 1.4</a></dt> 
+    <dd> a JavaScript framework optimised for mobile UIs</dd>
+
+  <dt><a href="http://www.numericjs.com/">numeric-1.0.2.js</a></dt> 
+    <dd> a linear algebra library</dd>
+  <dt><a href="http://zaach.github.io/jison/">Jison</a><dt>
+      <dd>a damn good parser generator, though parsers are
+                     built statically and Jison is not part of the source
+        (Jison runs under node.js).
+       </dd>
+  <dt><a href="http://docs.python.org/reference/grammar.html">a python-2.7(?)</a></dt>
+      <dd>stock grammar syntax, cut down for dREL and Jison.</dd>
+</dl>
+
+
+ </BODY>
+</HTML>

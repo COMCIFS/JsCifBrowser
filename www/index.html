@@ -1,0 +1,363 @@
+<!DOCTYPE HTML>
+<HTML>
+  <HEAD>
+    <meta charset="utf-8" />
+    <TITLE>JsCif</TITLE>
+<!--
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+  -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="./js/jquery/jquery.mobile-1.4.0.css" />
+    <link rel="stylesheet" href="css/custom.css" media="screen" type="text/css"/>
+
+    <script src="./js/jquery/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+$(document).one("mobileinit", function () {
+    $.mobile.defaultDialogTransition = "none";
+    $.mobile.defaultPageTransition = "none";
+});
+    </script>
+    <script src="./js/jquery/jquery.mobile-1.4.0.js"></script>
+    <style type="text/css">
+     .data_loop_container {
+        display:inline-block;
+     }
+     dt {
+        display:inline-block;
+        white-space: nowrap;
+     }
+     .data_loop {
+     }
+     textarea.ui-input-text { height: inherit ; width: inherit;}
+     input.comment {height: inherit; width:inherit;}
+     div.comment {white-space: nowrap;}
+     #cif, #dic, #status, #valid {
+        /* overflow-x: scroll; */ 
+     }    
+    .datum_name {min-width: 25em;}
+    .unknown_datum_name {min-width:25em;}
+    .data_block, .category, .datum_defn, .category_defn, .loop_ {
+       overflow-x: visible;
+       max-width:99999px;
+    }
+
+
+.folder, .file{
+    font-family:sans;
+    font-size:10px;
+    cursor:pointer;
+}
+ 
+.folder{
+    background: url('./img/folder.png') no-repeat 50% 0%;
+    margin:2px;
+    padding-top:25px;
+    text-align:center;
+}
+ 
+ 
+.file{
+    background: url('./img/file.png') no-repeat 50% 0%;
+    margin:2px;
+    padding-top:25px;
+    text-align:center;
+}
+    </style>
+
+    <script src="./js/views/hierarchy_view.js"></script>
+    <script src="./js/views/json_view.js"></script>
+    <script src="./js/dict/validation.js"></script>
+    <script src="./js/views/valid_view.js"></script>
+    <script src="./js/ddl/ddlm_dic.js"></script>
+    <script src="./dict/cif.dic.js"></script>
+    <script src="./js/dict/dict_wrapper.js"></script>
+    <script src="./js/dict/meta_dict.js"></script>
+
+<!--
+    <script src="./js/star/star.js"></script>
+    <script src="./js/star/star_observer.js"></script>
+  -->
+    <script src="./js/star/star_parser.js"></script>
+    <script src="./js/star/star_handler.js"></script>
+    <script src="./js/star/star_controller.js"></script>
+    <script src="./js/cif/cif_controller.js"></script>
+    <script src="./js/drel/drel_context.js"></script>
+    <script src="./js/drel/drel.js"></script>
+    <script src="./js/drel/drel_handler.js"></script>
+    <script src="./js/drel/numeric-1.0.2.js"></script>
+    <script src="./js/drel/library.js"></script>
+    <script src="./js/drel/auxdata.js"></script>
+    <!-- script src="./browser/displayFlip.js"></script -->
+    <script src="./js/browser/tooltip.js"></script>
+    <script src="./js/files.js"></script>
+    <script src="./cordova.js"></script>
+    <script type="text/javascript">
+
+var fileManager = null;
+function onDeviceReady() {
+  alert("Device ready.");
+  try {
+    fileManager = new FileManager();
+  } catch (err) {
+    alert (err);
+  } 
+}
+
+  document.addEventListener('deviceready', onDeviceReady, false);
+    </script>
+
+    <script type="text/javascript">
+
+var fileSupport = false; // Check for the various File API support.
+if (! window.File || ! window.FileReader || ! window.FileList || ! window.Blob) {
+  alert('The HTML5 File APIs are not fully supported in this browser.');
+} else {
+  // Great success! All the File APIs are supported.
+  fileSupport = true;
+}
+    </script>
+    <script src="./js/browser/CifJs.js"></script>
+    <script type="text/javascript">
+$(document).one("mobileinit", function () {
+    $.mobile.ignoreContentEnabled=true; // prevent jquery traversing of dict and cif
+});
+
+CifJs.switchPanel = function(panel) {
+  var lookup = {'dict':"#two", 'cif':"#three", 'valid':"#four", 'status':"#five",
+                'browser':"#browser"};
+  $.mobile.pageContainer.pagecontainer("change", lookup[panel]);
+}
+
+function documentInited() {
+//    load_downloadify(); // init flash file saving
+    CifJs._cifViewGenerator = HierarchyView; 
+    
+    // hard code default dictionary
+    document.body.style.cursor = 'wait';
+    CifJs._meta_dict = new MetaDict(CifJs);
+    CifJs.resetDict();
+    CifJs.wrapJSONDict("cif.dic.js", new cif_dict()._dict);
+    // render the dictionary
+    document.getElementById('dict').appendChild(
+           CifJs._meta_dict.getHTML4dict(document, "cif.dic.js"));
+    document.body.style.cursor = 'default';
+    // end of hard code
+
+    document.getElementById('dicts').addEventListener('change', handleDictSelect, false);
+    document.getElementById('cifs').addEventListener('change', handleCifSelect, false);
+
+
+    // handling document ready and phonegap deviceready
+    window.addEventListener('load', function () {
+       document.addEventListener('deviceready', onDeviceReady, false);
+    }, false);
+}
+
+  </script>
+</HEAD>
+
+<body onload="documentInited();">
+
+<!--  style="position:absolute; top:10px; left:50px; z-index:9999;" -->
+
+<div data-role="page" id="one">
+  <div data-role="header" data-position="fixed" data-theme="a" style="position:fixed;">
+<!--     <h1>Controls</h1>  -->
+     <div data-role="navbar" data-theme="a">
+     <ul>
+     <li><a href="#" data-role="button" data-inline="true" class="ui-disabled">Controls</a></li>
+     <li><a href="#two"  data-role="button" data-inline="true" data-transition="slide">Dict</a></li>
+     <li><a href="#three"  data-role="button" data-inline="true" data-transition="slide">Cif</a></li>
+     <li><a href="#four"  data-role="button" data-inline="true" data-transition="slide">Valid</a></li>
+     <li><a href="#five"  data-role="button" data-inline="true" data-transition="slide">Status</a></li>
+     </ul>
+     </div>
+  </div>
+
+  <div data-role="content">
+
+    <div id="loader">
+  
+      <form>
+        <ol start="0">
+        <li> (<a href="readme.html">Help</a>)</li>
+        <li> Optionally load an alternative CIF Dictionary in .js or .dic format.<br>
+        <input type="file" id="dicts" name="files[]" size="50" multiple="multiple" accept="application/javascript" label="Choose Dict" />
+        </li><br>
+        <li> Load your CIF file.<br>
+        <input type="file" id="cifs" name="files[]" size="50" accept="chemical/x-cif"  value="Choose CIF" />
+        </li><br>
+        <li> Optionally <input type="button" id="eval" style="" value="Validate" onclick="CifJs.validateAllBlocks(); return false;" /> inital CIF content.
+        </li><br>
+        <li> Optionally <input type="button" id="abort" style="" value="Eval all" onclick="CifJs.resolveMissingItems(); return false;" /> unknown "?" items in CIF.
+        </li><br>
+
+        <li> Edit and then <input type="button" id="cif-save" value="Export" onclick="CifJs.saveAsCIF();" /> your CIF as text for local saving,<br>
+        </li>
+        <li>  <input type="button" id="cif-read" value="Browse" onclick="CifJs.switchPanel('browser');fileManager.navigateFolders();" /> file system<br>
+        </li>
+
+        </ol>
+      </form>
+    </div>
+
+  </div><!-- /content -->
+	
+  <div data-role="footer" data-position="fixed" data-theme="a" style="position: fixed;">
+ 		<h4>Page Footer</h4>
+  </div><!-- /footer -->
+</div><!-- /page one -->
+
+
+<div data-role="page" id="two" data-theme="a">
+
+  <div data-role="header" data-position="fixed" style="position: fixed;">
+<!--		<h1>Dict</h1>  -->
+     <div data-role="navbar" data-theme="a">
+     <ul>
+     <li><a href="#one"  data-role="button" data-inline="true" data-transition="slide">Controls</a></li>
+     <li><a href="#" class="ui-disabled">Dict</a></li>
+     <li><a href="#three"  data-role="button" data-inline="true" data-transition="slide">Cif</a></li>
+     <li><a href="#four"  data-role="button" data-inline="true" data-transition="slide">Valid</a></li>
+     <li><a href="#five"  data-role="button" data-inline="true" data-transition="slide">Status</a></li>
+     </ul>
+    </div>
+  </div><!-- /header -->
+  <div data-role="content" data-enhance="false" data-theme="a" style="overflow-x:scroll">	
+      <div id="dict">
+      </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-theme="a" style="position: fixed;">
+    <h4>Page Footer</h4>
+  </div><!-- /footer -->
+</div>
+
+
+<div data-role="page" id="three" data-theme="a">
+
+  <div data-role="header" data-position="fixed" style="position: fixed;">
+<!--		<h1>Cif</h1> -->
+     <div data-role="navbar" data-theme="a">
+     <ul>
+     <li><a href="#one"  data-role="button" data-inline="true" data-transition="slide">Controls</a></li>
+     <li><a href="#two"  data-role="button" data-inline="true" data-transition="slide">Dict</a></li>
+     <li><a href="#" class="ui-disabled">Cif</a></li>
+     <li><a href="#four"  data-role="button" data-inline="true" data-transition="slide">Valid</a></li>
+     <li><a href="#five"  data-role="button" data-inline="true" data-transition="slide">Status</a></li>
+     </ul>
+     </div>
+  </div><!-- /header -->
+  <div data-role="content" data-theme="a" data-enhance="false" style="overflow-x:scroll">	
+      <div id="cif">
+      </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-theme="a" style="position: fixed;">
+    <h4>Page Footer</h4>
+  </div><!-- /footer -->
+</div>
+
+<div data-role="page" id="four" data-theme="a">
+
+  <div data-role="header" data-position="fixed" style="position: fixed;">
+<!--		<h1>Valid</h1> -->
+     <div data-role="navbar" data-theme="a">
+     <ul>
+     <li><a href="#one"  data-role="button" data-inline="true" data-transition="slide">Controls</a></li>
+     <li><a href="#two"  data-role="button" data-inline="true" data-transition="slide">Dict</a></li>
+     <li><a href="#three"  data-role="button" data-inline="true" data-transition="slide">Cif</a></li>
+     <li><a href="#" class="ui-disabled">Valid</a></li>
+     <li><a href="#five"  data-role="button" data-inline="true" data-transition="slide">Status</a></li>
+     </ul>
+     </div>
+  </div><!-- /header -->
+  <div data-role="content" data-theme="a" data-enhance="false" style="overflow-x:scroll">	
+      <div id="valid" >
+      </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-theme="a" style="position: fixed;">
+    <h4>Page Footer</h4>
+  </div><!-- /footer -->
+</div>
+
+
+<div data-role="page" id="five" data-theme="a">
+
+  <div data-role="header" data-position="fixed" style="position: fixed;">
+<!--		<h1>Status</h1>  -->
+     <div data-role="navbar" data-theme="a">
+     <ul>
+     <li><a href="#one"  data-role="button" data-inline="true" data-transition="slide">Controls</a></li>
+     <li><a href="#two"  data-role="button" data-inline="true" data-transition="slide">Dict</a></li>
+     <li><a href="#three"  data-role="button" data-inline="true" data-transition="slide">Cif</a></li>
+     <li><a href="#four"  data-role="button" data-inline="true" data-transition="slide">Valid</a></li>
+     <li><a href="#" data-role="button" data-inline="true" class="ui-disabled">Status</a></li>
+      </ul>
+     </div>
+  </div><!-- /header -->
+  <div data-role="content" data-theme="a" style="overflow-x:scroll">	
+      <div id="status" >
+      </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-theme="a" style="position: fixed;">
+    <h4>Page Footer</h4>
+  </div><!-- /footer -->
+</div>
+
+
+
+   <!-- hidden div to load  extra DDLm dependencies -->
+  <div id="dictload" style="position:absolute; visibility: hidden; width: 500px; height: 100px;
+left: 300px; top: 200px; background-color: #ccc; border: 1px solid #000; padding: 10px; ">
+      <form>
+        <p> Please load the CIF Dictionary: <span id="dictname"></span><br> 
+        <input type="file" id="newdict" name="files[]" size="35" accept="application/javascript" label="Choose Dict" />
+        </p>
+      </form>
+  </div>
+
+  <!-- hidden div for tooltip popup -->
+  <div id="tooltip" style="position: absolute; visibility: hidden; 
+   width: 300px; background-color: #ccc; border: 1px solid #000; padding: 10px; ">
+  </div>
+
+<div data-role="page" id="browser" data-theme="a">
+      <div data-role="header" data-position="fixed">
+            <a id="backBtn" href="#" data-icon="arrow-l">Back</a>
+            <h1>File Explorer</h1>
+            <a id="homeBtn" href="index.html" data-icon="home" data-transition="pop">Home</a>
+      </div>
+      <div data-role="content">
+            <h2>Folder</h2>
+<div class="ui-grid-c" id="dirContent">
+    <div class="ui-block-a">
+        <div class="folder"><p>folder name</p></div>
+    </div>
+    <div class="ui-block-b">
+        <div class="folder"><p>folder name</p></div>
+    </div>
+    <div class="ui-block-c">
+        <div class="folder"><p>folder name</p></div>
+    </div>
+    <div class="ui-block-d">
+        <div class="folder"><p>folder name</p></div>
+    </div>
+    <!-- next row -->
+    <div class="ui-block-a">
+        <div class="file"><p>file name</p></div>
+    </div>
+    <div class="ui-block-b">
+        <div class="file"><p>file name</p></div>
+    </div>
+    <div class="ui-block-c">
+        <div class="file"><p>file name</p></div>
+    </div>
+    <div class="ui-block-d">
+        <div class="file"><p>file name</p></div>
+    </div>
+</div>
+      </div>
+ </div>
+  
+</body>
+</html>

@@ -1,0 +1,9 @@
+ Function Closest( v :[Vector, Real],   # coord vector to be cell translated
+                       w :[Vector, Real]) { # target vector
+ 
+            d  <-  v - w
+            t  <-  Int( Mod( 99.5 + d, 1.0 ) - d )
+
+            Closest <- Tuple ([ v+t, t ])
+     }
+

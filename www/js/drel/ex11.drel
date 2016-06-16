@@ -1,0 +1,11 @@
+
+     Function AtomType( s :[Single, Uchar, Label])  {  # atom type label
+       
+        m <- Len(s)
+        n <- 1
+        If (m > 1 and s[1] not in '0123456789') n <- 2 
+        If (m > 2 and s[2]     in '+-'        ) n <- 3 
+        If (m > 3 and s[3]     in '+-'        ) n <- 4 
+
+                 AtomType <-  s[0:n]
+     }

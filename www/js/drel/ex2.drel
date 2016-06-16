@@ -1,0 +1,21 @@
+     With  a  as  atom_site_aniso
+
+     If      (a.adp_type == 'uani')  {
+
+         C <-  _cell_reciprocal.convert_U_to_beta
+         B <-  C * _atom_site_aniso.matrix_U * C
+     }
+     Else If (a.adp_type == 'bani')  {   
+
+         C <-  _cell_reciprocal.convert_U_to_beta / (2.828427 * Pi)
+         B <-  C * _atom_site_aniso.matrix_B * C
+     }
+     Else                                    {
+         If (a.adp_type == 'uiso')  b  <- a.U_iso_or_equiv
+         Else                       b  <- a.B_iso_or_equiv / (8 * Pi**2)
+
+         C  <- _cell_reciprocal.convert_U_to_beta
+         B  <-  C * Matrix([[b,0,0],[0,b,0],[0,0,b]]) * C
+     }
+     _atom_site_aniso.matrix_beta <- B
+

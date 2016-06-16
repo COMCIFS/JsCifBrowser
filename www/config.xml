@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.example.js_cif" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>JsCif</name>
+    <description>
+        An implementation of DDLm dREL framework in javascript.
+    </description>
+    <author email="Doug.duBoulay@gmail.com" href="http://www.iucr.org/resources/cif">
+        IUCr Committee for the Maintenance of the CIF Standard (COMCIFS)
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="5000" />
+</widget>

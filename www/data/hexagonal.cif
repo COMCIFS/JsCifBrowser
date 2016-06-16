@@ -1,0 +1,132 @@
+ 
+data_hexagonal
+ 
+_cell_length.a                     8.53(1)                               #ActaC
+_cell_length.b                     8.53(1)                               #ActaC
+_cell_length.c                     20.37(1)                              #ActaC
+_cell_angle.alpha                  90.00(1)                              #ActaC
+_cell_angle.beta                   90.00(1)                              #ActaC
+_cell_angle.gamma                  120.00(1)                             #ActaC
+_cell.volume                       1284(3)                               #ActaC
+_cell.formula_units_Z              ?                                     #ActaC
+_cell_measurement.temperature      293                                   #ActaC
+_cell_measurement.reflns_used      ?                                     #ActaC
+_cell_measurement.theta_min        ?                                     #ActaC
+_cell_measurement.theta_max        ?                                     #ActaC
+ 
+_symmetry.cell_setting             hexagonal                             #ActaC
+_symmetry.space_group_name_H-M     ?                                     #ActaC
+_symmetry.space_group_name_Hall    P_61_2___(0_0_-1)                     #ActaC
+loop_
+_symmetry_equiv.pos_as_xyz                                               #ActaC
+  +x,+y,+z  -x,-y,1/2+z  -y,-x,5/6-z  +y,+x,1/3-z  +x-y,-y,-z  -x+y,+y,1/2-z
+  +x,+x-y,1/6-z  -x,-x+y,2/3-z  -y,+x-y,1/3+z  +y,-x+y,5/6+z  +x-y,+x,1/6+z
+  -x+y,-x,2/3+z
+ 
+_exptl_crystal.density_diffrn         .56                                #ActaC
+ 
+_diffrn_ambient.temperature        293                                  #ActaC
+_diffrn_radiation.type             xray_tube                            #ActaC
+ 
+_diffrn_reflns.theta_min              5.99                              #ActaC
+_diffrn_reflns.theta_max             28.65                              #ActaC
+ 
+loop_
+_atom_type.symbol                                                       #ActaC
+_atom_type.description                                                  #ActaC
+_atom_type.oxidation_number
+# _atom_type.number_in_cell
+  s  ?  0  # 6  
+  o  ?  0  # 6  
+  c  ?  0  # 12
+ 
+loop_
+_atom_type_scat.symbol                                                       #ActaC
+_atom_type_scat.dispersion_real                                         #ActaC
+_atom_type_scat.dispersion_imag                                         #ActaC
+_atom_type_scat.source                                                  #ActaC
+  s  .319  .557  Int._Tables_Vol_IV_Tables_2.2B_and_2.3.1
+  o  .047  .032  Int._Tables_Vol_IV_Tables_2.2B_and_2.3.1
+  c  .017  .009  Int._Tables_Vol_IV_Tables_2.2B_and_2.3.1
+ 
+loop_
+_atom_site.label                                                        #ActaC
+_atom_site.fract_x                                                      #ActaC
+_atom_site.fract_y                                                      #ActaC
+_atom_site.fract_z                                                      #ActaC
+_atom_site.U_iso_or_equiv                                               #ActaC
+_atom_site.thermal_displace_type                                        #ActaC
+_atom_site.occupancy
+# _atom_site.site_symmetry_multiplicity 
+  s  .20200  .79800  .91667  .02528  Uani   1 #   6
+  o  .49800  .49800  .66667  .02520  Uiso   1 #   6
+  c1  .48800  .09600  .03800  .03170  Uiso  1 #  12
+ 
+loop_
+_atom_site_aniso.label                                                  #ActaC
+_atom_site_aniso.U_11                                                   #ActaC
+_atom_site_aniso.U_22                                                   #ActaC
+_atom_site_aniso.U_33                                                   #ActaC
+_atom_site_aniso.U_12                                                   #ActaC
+_atom_site_aniso.U_13                                                   #ActaC
+_atom_site_aniso.U_23                                                   #ActaC
+  s  .02530  .02530  .02530  .01270  .00000  .00000
+ 
+ 
+_reflns.limit_h_min                0
+_reflns.limit_h_max                2
+_reflns.limit_k_min                0
+_reflns.limit_k_max                3
+_reflns.limit_l_min                0
+_reflns.limit_l_max                12
+_reflns.number_total               32                                   #ActaC
+_reflns.number_observed            26                                   #ActaC
+_reflns.observed_criterion         refl_observed_if_F____>_***__sigma(F___)
+_reflns.d_resolution_high            1.608
+_reflns.d_resolution_low             7.387
+_reflns.apply_dispersion_to_fcalc      'no' #new
+ 
+loop_
+_refln.index_h
+_refln.index_k
+_refln.index_l
+_refln.F_meas
+_refln.F_calc_xtal
+_refln.F_calc
+_refln.F_sigma
+_refln.observed_status
+_refln.scale_group_code
+    0   0   6  39.400  28.981 ?   3.510  o  1
+    0   0  12  48.440  43.071 ?   2.380  o  1
+    0   1   0  43.200  43.481 ?   5.270  o  1
+    0   1   1  57.360  58.234 ?   5.270  o  1
+    0   1   2  76.960  96.309 ?   4.830  o  1
+    0   1   3  53.040  51.959 ?   4.300  o  1
+    1   1   2   6.400   2.849 ?    .000  <  1
+    1   1   3  17.600  14.009 ?   3.530  o  1
+    1   1   4  81.440  84.101 ?   3.370  o  1
+    1   1   6   6.520    .521 ?    .000  <  1
+    1   1   7   7.360   6.429 ?    .000  <  1
+    1   1   8  42.200  42.680 ?   2.700  o  1
+    1   1   9   8.440   6.475 ?    .000  <  1
+    1   1  10  28.280  19.156 ?   2.110  o  1
+    1   1  11  11.920   7.978 ?   2.020  o  1
+    1   2   0  27.840  22.056 ?   3.150  o  1
+    1   2   1  29.280  26.814 ?   2.880  o  1
+    1   2   2  39.360  37.167 ?   3.040  o  1
+    1   2   3  19.480  16.844 ?   2.750  o  1
+    1   2   4  24.320  25.106 ?   2.550  o  1
+    2   2   2   7.680   5.984 ?    .000  <  1
+    2   2   3  12.640  10.488 ?   2.360  o  1
+    2   2   4   7.720   5.251 ?   2.320  o  1
+    2   2   5  47.480  41.707 ?   2.360  o  1
+    2   2   6  10.400   1.545 ?   2.510  o  1
+    2   2   7  15.600  14.648 ?   2.140  o  1
+    2   2   8  16.640  19.397 ?   1.690  o  1
+    2   3   0  27.080  26.957 ?   2.120  o  1
+    2   3   1   8.080   4.994 ?    .000  <  1
+    2   3   2  22.920  23.055 ?   2.310  o  1
+    2   3   3  40.360  36.356 ?   2.190  o  1
+    2   3   4  16.920  13.788 ?   1.910  o  1
+ 
+ 

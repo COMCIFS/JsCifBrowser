@@ -1,0 +1,4 @@
+                       sm <- _symmetry_equiv.Seitz_matrix
+        _symmetry_equiv.R <- Matrix([[sm[0,0],sm[0,1],sm[0,2]],
+                                     [sm[1,0],sm[1,1],sm[1,2]],
+                                     [sm[2,0],sm[2,1],sm[2,2]]]) 

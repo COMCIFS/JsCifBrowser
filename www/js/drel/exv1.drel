@@ -1,0 +1,12 @@
+#   With cv as _cell.volume
+#   if(cv.isValuePresent()) {
+#     if(abs(cv.getValue()-cv.evaluate()) > delVol )
+#       throw (cellVolumeWarning);
+#   }
+   delVol = 0.0005
+   With c as cell
+   if (c.hasItem('volume') ) {
+     if(Abs(c.volume.getValue()-c.volume.evaluate()) > delVol ) {
+       Throw (_cell.volume, 'cellVolumeWarning');
+     }
+   }

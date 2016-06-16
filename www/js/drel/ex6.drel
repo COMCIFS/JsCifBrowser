@@ -1,0 +1,8 @@
+    mass <- 0.
+
+    Loop t as atom_type  {
+
+                   mass +<- t.number_in_cell * t.atomic_mass
+    }
+      _cell.atomic_mass <- mass
+
