@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env nodejs
 
 exports.STAR_reader = function(absolute_file_path) {
 

@@ -997,6 +997,8 @@ BaseDictWrapper.prototype._getSaveClass = function(save, save_mapping) {
       }
     } 
   }
+    this.info("Unknown save class");
+    this.info(save);
   return "unknown";
 };
 
@@ -2338,10 +2340,12 @@ DDLmCtrlr.prototype._init = function(dict, logger) {
 
 /**
  * Build a useful/functional data structure from the raw JSON.
+ * (JRH: can revert to DDLStar version with non-nested save
+ * frames)
  * @memberof DDLmCtrlr.prototype
  * @return null
  */
-DDLmCtrlr.prototype._findCategories = function(data) {
+/* DDLmCtrlr.prototype._findCategories = function(data) {
   this.info("save frames, comments and dict level items " + data.length);
   var stats = {'SAVE':0,'ITEM':0, 'COMMENT':0, 'DUPES':0};
 
@@ -2358,7 +2362,7 @@ DDLmCtrlr.prototype._findCategories = function(data) {
   else  {
     this.info("unresolved  " +  Object.keys(this._unresolvedCat).length);
   }
-};
+}; */
 
 
 /**
