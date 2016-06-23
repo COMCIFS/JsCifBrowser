@@ -2039,7 +2039,7 @@ DDLstarCtrlr.prototype._findCategories = function(data) {
         this.warn("Unexpected cat group order: " + catid + " for " 
           + chunk[1] + "\n Parent " + parent_cat + " not yet defined!" );
       } 
-      else if (save_class == 'ITEM') {
+      else if (save_class == 'ITEM' || save_class == 'unknown') {
         // save_frame is an item_
         var itemid = this._getAttribute(this._full_definition_name, chunk[2]);
         var items;
