@@ -565,7 +565,7 @@ HierarchyView.prototype._renderCategory = function(block, cat_name, parentXmlNod
 
 	if (this._modelType == 'cif') {
           if (this._schema) {
-            if (hierarchy.length > 0) 
+            if (typeof hierarchy != 'undefined' && hierarchy.length > 0) 
               strn = ":" + hierarchy.join(':') + ":" + strn;
             else 
               strn = ":" +  strn;

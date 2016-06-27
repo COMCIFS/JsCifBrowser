@@ -286,16 +286,17 @@ ItemDefn.prototype.getAttribute = function(tag) {
 
 	if (ret) return ret;
 	if (this._generic) {
-//		this._logger.info("----------------" + this._name + " CHECKING GENERIC for " + tag);
+		// this._logger.info("----------------" + this._name + " CHECKING GENERIC for " + tag);
 		if (this._generic instanceof Array) {
 			// hope there is no overriding of the imports ...
 			for (var i = 0; i < this._generic.length; i++) {
-				var genItem = this._generic[i];
-				ret =  genItem.getAttribute(tag);
-				if (ret) return ret;
+			    var genItem = this._generic[i];
+			    ret =  genItem.getAttribute(tag);
+			    if (ret) return ret;
 			}
 		} else {
-			return  this._generic.getAttribute(tag);
+ 		    ret = this._generic.getAttribute(tag);
+                    return ret;
 		}    
 	}
 
@@ -1182,10 +1183,15 @@ BaseDictWrapper.prototype._buildAliases = function(alias_tag) {
   this.info("Resolved " + cnt + " aliases");
 };
 
+/* JRH comments: We are passed (an attribute?) dictionary in 'dict', the attribute used to recognise
+an alias in 'alias_tag', the item object that we wish to calculate aliases for in 'item',
+the save structure potentially holding the alias definitions in 'save', and the actual save 
+frame name in key.  We get the actual name in order to detect duplications
+*/
 
 BaseDictWrapper.prototype._buildItemAliases = function(dict, alias_tag, item, save, key) {
     var cnt = 0; 
-    var aliaslist = [];
+    var aliaslist = [];   //A list of alias definition.ids
     var alias = dict._getAttribute(alias_tag, save);
     if (alias) {
       aliaslist.push(alias);
@@ -1193,7 +1199,7 @@ BaseDictWrapper.prototype._buildItemAliases = function(dict, alias_tag, item, sa
       aliaslist = dict._getList(alias_tag, save);  
     }
 
-    if (aliaslist && aliaslist.length>0 ) {
+    if (aliaslist && aliaslist.length>0 ) {  //Aliases are defined
       item._aliases = [ ];
       for (var i = 0; i < aliaslist.length; i++) {
         var aliasid = aliaslist[i].toLowerCase();
@@ -2089,11 +2095,15 @@ DDLstarCtrlr.prototype._findCategories = function(data) {
             }
           }
         }
-        else {
-          this._generics[chunk[1]] = chunk;
-          // this.warn(" Crazy loop shit for save_ " + chunk[1]);
+          else {
+              // Copied from recursive find section, this handles template-type definitions
+              // with no actual item name defined inside them
+              var genericid = chunk[1];
+              var item = new ItemDefn(genericid);
+              item._save = chunk[2];
+              item._data = this._wrapAttributes(chunk[2],item);
+              this._generics[genericid.toLowerCase()] = item;
         }
-  
       } 
       else {
         this.warn(" No details for data_ " + chunk[1]);
@@ -2175,24 +2185,24 @@ DDLstarCtrlr.prototype._fixUnresolved = function() {
   this.info("Identified " + Object.keys(this._functions).length + " functions" );
 
   // loop for all items and add generic link if required.
-  for (var itemid in this._items) {
-    var item = this._items[itemid];
-    var importid = BaseDictWrapper.prototype._getAttribute(
-           this._defn_import, item._save);
-    
     if (this._ddl_version == 'DDL_star') {
-      if (importid) { 
-        importid = importid.toLowerCase();
-        if (importid  in this._generics) {
-          // save pointer to record
-//        this.info("got import " + importid + " for " + itemid);
-          item._generic = this._generics[importid]; 
-        } else {
-          this.warn("No generic item for import " + importid);
-        }
-      }
-    } 
-  }
+        for (var itemid in this._items) {
+            var item = this._items[itemid];
+            var importid = BaseDictWrapper.prototype._getAttribute(
+                this._defn_import, item._save);
+            
+            if (importid) { 
+                importid = importid.toLowerCase();
+                if (importid  in this._generics) {
+                    // save pointer to record
+                    //        this.info("got import " + importid + " for " + itemid);
+                    item._generic = this._generics[importid]; 
+                } else {
+                    this.warn("No generic item for import " + importid);
+                }
+            }
+        } 
+    }
 
   // dont think this does anything at all ....
   if (1 == 2) {
@@ -2405,7 +2415,7 @@ DDLmCtrlr.prototype._recursiveFindCategories = function(enclosing, data, stats) 
          if (typ == 'save_') saveitems.push(ch);
          else catdata.push(ch);
         }
-        cat._save = catdata; // subset of cat specific items
+        cat._save = catdata; // non-nested save items
         cat._data = this._wrapAttributes(catdata, cat);
         
         if (catid.toLowerCase() in this._categories) {
@@ -2858,24 +2868,24 @@ DDLmCtrlr.prototype._fixUnresolved = function() {
   this.info("Identified " + Object.keys(this._functions).length + " functions" );
 
   // loop for all items and add generic link if required.
-  for (var itemid in this._items) {
-    var item = this._items[itemid];
-    var importid = BaseDictWrapper.prototype._getAttribute(
-           this._defn_import, item._save);
-    
     if (this._ddl_version == 'DDL_star') {
-      if (importid) { 
-        importid = importid.toLowerCase();
-        if (importid  in this._generics) {
-          // save pointer to record
-//        this.info("got import " + importid + " for " + itemid);
-          item._generic = this._generics[importid]; 
-        } else {
-          this.warn("No generic item for import " + importid);
-        }
-      }
-    } 
-  }
+        for (var itemid in this._items) {
+            var item = this._items[itemid];
+            var importid = BaseDictWrapper.prototype._getAttribute(
+                this._defn_import, item._save);
+            
+            if (importid) { 
+                importid = importid.toLowerCase();
+                if (importid  in this._generics) {
+                    // save pointer to record
+                    //        this.info("got import " + importid + " for " + itemid);
+                    item._generic = this._generics[importid]; 
+                } else {
+                    this.warn("No generic item for import " + importid);
+                }
+            }
+        } 
+    }
 
   for (var name in this._unresolved) {
     this.info("as yet unresolved " + name);

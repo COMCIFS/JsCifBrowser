@@ -80,7 +80,14 @@ MetaDict.prototype.reset = function() {
  * @return {MetaDict}
  */
 MetaDict.prototype.wrapJSONDict = function(filename, json) {
-  var wrapped =  new DictWrapper(json, this); // build hierarchy
+    try {
+        var wrapped =  new DictWrapper(json, this); // build hierarchy
+    }
+    catch (e) {
+        this.error(e.message);
+        this.error(e.fileName);
+        this.error(e.lineNumber);
+    }
   if (! this._ddl_version) {
     this._ddl_version = wrapped._ddl_version; //
     for (var key in wrapped._ddl_map) {
@@ -305,11 +312,11 @@ MetaDict.prototype._ultimateImportResolution = function() {
           }
         }
         if (imports.length < 1) continue;
-        if (imports.length >1) {
+        //if (imports.length >1) {
           src_save._generic = imports;
-        } else if (imports.length ==1) {
-          src_save._generic = imports[0];
-        }
+        //} else if (imports.length ==1) {
+        //  src_save._generic = imports[0];
+        //}
         // ensure cat._itemsByAttributeId is built
         if (j == 0) { // for items 
           var cat = src_save._category
@@ -325,14 +332,17 @@ MetaDict.prototype._ultimateImportResolution = function() {
           } 
           cat._itemsByAttributeId[catAtId] = src_save;
           cat._itemsByAttributeId[catAtId.toLowerCase()] = src_save;
-
-          dict._buildItemAliases(dict, dict._alias_tag, src_save, src_save._generic._save, saved); 
-
+            for (var oi=0;oi<src_save._generic.length;oi++) {
+                dict._buildItemAliases(dict, dict._alias_tag, src_save, src_save._generic[oi]._save, saved); 
+            }
         }
       } // end of  items or cats loop
     } // end of items and cats
   } // end of dict
   } catch (e) {
+        this.error(e.message);
+        this.error(e.fileName);
+        this.error(e.lineNumber);
     alert(e);
   } 
 };
